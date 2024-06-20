@@ -27,6 +27,7 @@ import EditForm from './components/EditComponents/EditForm';
 import AddForm from './components/AddComponents/AddForm';
 import EditorTemplate from './components/EditorTemplate';
 import Invoice from './components/Invoice';
+import Chatbot from './components/ChatBot';
 function App() {
   return (
     <div className="App">
@@ -46,6 +47,7 @@ function App() {
       <Route path="/llc/form" element={<AddForm/>}/>
       <Route path="/template" element={<EditorTemplate/>}/>
       <Route path="/invoice" element={<Invoice/>}/>
+      <Route path="/chat" element={<Chatbot/>}/>
      </Routes>
      </BrowserRouter>
     </div>

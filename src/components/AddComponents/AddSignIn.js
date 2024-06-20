@@ -15,6 +15,7 @@ import { Password } from 'primereact/password';
 import { useNavigate } from 'react-router';
 
 import Switch from '@mui/material/Switch';
+import SignIn from '../../services/SignInServices';
 
 export const AddSignIn = ({ visible1, setVisible1 }) => {
 
@@ -86,12 +87,18 @@ export const AddSignIn = ({ visible1, setVisible1 }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        const actualdata = {
-            id: 1,
-            cityName: ingredient,
-            isActive: checked
+        // const actualdata = {
+        //     id: 1,
+        //     cityName: ingredient,
+        //     isActive: checked
+        // }
+
+        const actualdata={
+            email:ingredient,
+            password:password
         }
-        navigate("/dashboard")
+        SignIn.signIn(actualdata)
+        // navigate("/dashboard")
         console.log(actualdata)
 
         if (actualdata.cityName !== '' && cityErr === '') {

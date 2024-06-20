@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import Navbar from '../common/Navbar'
 import { Button } from 'primereact/button'
 import { useNavigate } from 'react-router-dom'
@@ -8,10 +8,14 @@ import BrandElement from "../Assets/Images/Brand-Elements_Logo_Marketing_NA_Flor
 import Nybasa from "../Assets/Images/nysba.png.png"
 import CalifirniaBar from "../Assets/Images/california-bar.png.png"
 import TexasStateBar from "../Assets/Images/state-bar-of-texas-3.png.png"
+import { OverlayPanel } from 'primereact/overlaypanel'
+import Chatbot from './ChatBot'
+import { Avatar } from 'primereact/avatar';
 
 const HomePage = () => {
 
     const navigate = useNavigate()
+    const op = useRef(null)
     return (
         <div>
             <Navbar />
@@ -39,37 +43,52 @@ const HomePage = () => {
                         </div>
 
                     </div>
+
                     <div className='homepage-footer-container mt-5'>
                         <div className='homepage-footer-main'>
                             <div className='homepage-footer-header-main'>
                                 <div className='homepage-footer-header-text-main'>
                                     <p>
-                                    <span className='homepage-header-typography'>
-                                        Approved by
-                                    </span>
-                                    <span className='hompage-header-number ml-3'>
-                                        90+
-                                    </span>
-                                    <span className='homepage-header-typography ml-3'>
-                                        associations & law societies
-                                    </span>
+                                        <span className='homepage-header-typography'>
+                                            Approved by
+                                        </span>
+                                        <span className='hompage-header-number ml-3'>
+                                            90+
+                                        </span>
+                                        <span className='homepage-header-typography ml-3'>
+                                            associations & law societies
+                                        </span>
                                     </p>
                                 </div>
-                                
+
                             </div>
                             <div className='d-flex justify-content-center mt-2 gap-5 align-items-center'>
 
-                            <img src={BarLogoWashington} alt="" className='' style={{width:'85px',height:'87px',flexShrink:'0'}} />
-                            <img src={ABAVector} alt="" style={{width:'171px',height:'72px',flexShrink:'0'}} />
-                            <img src={BrandElement} alt="" style={{width:'139px',height:'81px',flexShrink:'0'}} />
-                            <img src={Nybasa} alt="" style={{width:'171px',height:'30px',flexShrink:'0'}} />
-                            <img src={CalifirniaBar} alt="" style={{width:'90px',height:'73px',flexShrink:'0'}} />
-                            <img src={TexasStateBar} alt="" style={{width:'171px',height:'68px',flexShrink:'0'}} />
+                                <img src={BarLogoWashington} alt="" className='' style={{ width: '85px', height: '87px', flexShrink: '0' }} />
+                                <img src={ABAVector} alt="" style={{ width: '171px', height: '72px', flexShrink: '0' }} />
+                                <img src={BrandElement} alt="" style={{ width: '139px', height: '81px', flexShrink: '0' }} />
+                                <img src={Nybasa} alt="" style={{ width: '171px', height: '30px', flexShrink: '0' }} />
+                                <img src={CalifirniaBar} alt="" style={{ width: '90px', height: '73px', flexShrink: '0' }} />
+                                <img src={TexasStateBar} alt="" style={{ width: '171px', height: '68px', flexShrink: '0' }} />
                             </div>
                         </div>
-                        
+
                     </div>
+
                 </div>
+            </div>
+            <div className=" chat-overlay flex justify-content-end mb-5">
+
+                <Button type="button" icon="pi pi-book" label="Chat With Us" className='mt-2 form-Btn form-Btn-Label font-fam-for-all text-center text-lg  mr-2' onClick={(e) => op.current.toggle(e)} />
+                <OverlayPanel ref={op}  >
+                    <div className="custom-header" style={{backgroundColor:'#1D305F'}}>
+                    <Avatar icon="pi pi-user" size="large" style={{ backgroundColor: '#2196F3', color: '#ffffff' }} shape="circle" />
+                        <span style={{color:'#ffff'}}>Chat With Us</span>
+                        <Button icon="pi pi-times" className="p-button-rounded p-button-text" onClick={() => op.current.hide()} />
+                    </div>
+                    {/* <img src={'https://primefaces.org/cdn/primereact/images/product/bamboo-watch.jpg'} alt="Bamboo Watch"></img> */}
+                    <Chatbot />
+                </OverlayPanel>
             </div>
         </div>
     )
